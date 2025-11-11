@@ -5,18 +5,10 @@ PROFILE="${1:-profiles/workstation.example.conf}"
 
 if [ ! -f "$PROFILE" ]; then
   echo "[smileos-backup] Profile not found: $PROFILE" >&2
-  echo "Create a profile file describing SRC and DEST before enabling backups." >&2
+  echo "Create a profile file describing source paths and destination before running real backups." >&2
   exit 1
 fi
 
-# Example profile format (ini-style):
-# SRC=/home/username
-# DEST=/mnt/backup/home-username
-# EXCLUDES="--exclude .cache --exclude Downloads"
-
-# shellcheck disable=SC1090
-# Load profile:
-# . "$PROFILE"
-
-echo "[smileos-backup] Template implementation."
-echo "Review and replace this placeholder with rsync/btrfs/zfs commands appropriate to your environment."
+echo "[smileos-backup] This is a template."
+echo "Read and adapt this script with rsync or snapshot commands appropriate for your system."
+echo "Profile loaded from: $PROFILE"

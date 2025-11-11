@@ -1,8 +1,5 @@
 # SmileOS Tools Overview
 
-SmileOS Tools groups common operational tasks into documented commands:
-- Diagnostics (`smileos-health`)
-- Backup orchestration (`smileos-backup`)
-- Network mode design (`smileos-netmode`)
-
-Each entrypoint is intended to be auditable and site-specific before production use.
+SmileOS Tools groups common Linux/Arch operational tasks into structured, documented commands.
+The goal is to provide repeatable patterns for backup, network modes, and diagnostics that a technician
+can understand and safely adapt.

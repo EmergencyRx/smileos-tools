@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODE="${1:-}"
+
+if [[ "$MODE" != "tor" && "$MODE" != "direct" ]]; then
+  echo "Usage: $(basename "$0") [tor|direct]" >&2
+  exit 1
+fi
+
+echo "[smileos-netmode] Requested mode: $MODE"
+echo "Implement firewall, proxy, and DNS changes here with safety checks and logging."

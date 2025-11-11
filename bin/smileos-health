@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "[smileos-health] Basic system health placeholder."
+echo "Add checks for disk space, memory, load, journal errors, and network status."

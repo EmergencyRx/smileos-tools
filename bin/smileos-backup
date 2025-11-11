@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "[smileos-backup] Placeholder."
+echo "Define backup sources, destinations, and strategy in profiles/*.conf and implement logic here."

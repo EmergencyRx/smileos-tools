@@ -4,29 +4,49 @@ set -euo pipefail
 echo "[smileos-health] System health summary"
 
 echo
-echo "[disk] Filesystem usage:"
-df -hT | awk 'NR==1 || /^\/dev/ {print}'
+echo "[identity]"
+hostnamectl 2>/dev/null || uname -a
 
 echo
-echo "[memory] Free memory:"
-free -h
+echo "[disk] Filesystem usage (root and home if present):"
+df -hT / /home 2>/dev/null || df -hT
 
 echo
-echo "[load] Load averages:"
-uptime
+echo "[memory] Usage:"
+free -h || echo "free command not available."
 
 echo
-echo "[journal] Recent system errors (last 200 lines, if available):"
-if command -v journalctl >/dev/null 2>&1; then
-  journalctl -p 3 -n 200 --no-pager || true
+echo "[cpu] Load and uptime:"
+uptime || echo "uptime command not available."
+
+echo
+echo "[services] Basic systemd state (if available):"
+if command -v systemctl >/dev/null 2>&1; then
+  systemctl is-system-running 2>/dev/null || true
 else
-  echo "journalctl not available on this system."
+  echo "systemctl not available."
 fi
 
 echo
-echo "[network] Default route and link summary:"
-ip route show default 2>/dev/null || true
-ip -brief addr show 2>/dev/null || true
+echo "[journal] Recent errors (priority 0..3, last 100 lines):"
+if command -v journalctl >/dev/null 2>&1; then
+  journalctl -p 0..3 -n 100 --no-pager 2>/dev/null || echo "No high-priority logs found."
+else
+  echo "journalctl not available."
+fi
 
 echo
-echo "[note] This script is a non-destructive diagnostic helper. Extend with project-specific checks as needed."
+echo "[network] Default route and addresses:"
+ip route show default 2>/dev/null || echo "No default route found."
+ip -brief addr show 2>/dev/null || echo "ip command not available."
+
+echo
+echo "[dns] Resolver configuration (first lines):"
+if [ -f /etc/resolv.conf ]; then
+  head -n 10 /etc/resolv.conf
+else
+  echo "/etc/resolv.conf not found."
+fi
+
+echo
+echo "[note] This is read-only. Extend with project-specific checks as needed."

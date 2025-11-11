@@ -3,13 +3,25 @@ set -euo pipefail
 
 MODE="${1:-}"
 
-if [[ "$MODE" != "tor" && "$MODE" != "direct" ]]; then
-  echo "Usage: $(basename "$0") [tor|direct]" >&2
-  exit 1
-fi
+case "$MODE" in
+  tor)
+    echo "[smileos-netmode] Requested mode: tor"
+    echo "Design placeholder:"
+    echo "- Configure transparent proxy or SOCKS for selected users/apps."
+    echo "- Adjust DNS to use Tor-safe resolvers."
+    echo "- Log all changes."
+    ;;
+  direct)
+    echo "[smileos-netmode] Requested mode: direct"
+    echo "Design placeholder:"
+    echo "- Restore original DNS, proxy, and firewall state."
+    echo "- Validate outbound connectivity."
+    echo "- Log all changes."
+    ;;
+  *)
+    echo "Usage: $(basename "$0") [tor|direct]" >&2
+    exit 1
+    ;;
+esac
 
-echo "[smileos-netmode] Requested mode: $MODE"
-echo "This is a design stub. Implement firewall/proxy/DNS changes here with:"
-echo "- Full logging of changes"
-echo "- Validation before apply"
-echo "- Rollback on failure"
+echo "[smileos-netmode] No changes applied in this template. Implement logic explicitly and cautiously."

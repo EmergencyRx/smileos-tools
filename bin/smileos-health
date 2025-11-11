@@ -1,5 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "[smileos-health] Basic system health placeholder."
-echo "Add checks for disk space, memory, load, journal errors, and network status."
+echo "[smileos-health] System health summary"
+
+echo
+echo "[disk] Filesystem usage:"
+df -hT | awk 'NR==1 || /^\/dev/ {print}'
+
+echo
+echo "[memory] Free memory:"
+free -h
+
+echo
+echo "[load] Load averages:"
+uptime
+
+echo
+echo "[journal] Recent system errors (last 200 lines, if available):"
+if command -v journalctl >/dev/null 2>&1; then
+  journalctl -p 3 -n 200 --no-pager || true
+else
+  echo "journalctl not available on this system."
+fi
+
+echo
+echo "[network] Default route and link summary:"
+ip route show default 2>/dev/null || true
+ip -brief addr show 2>/dev/null || true
+
+echo
+echo "[note] This script is a non-destructive diagnostic helper. Extend with project-specific checks as needed."

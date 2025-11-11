@@ -6,33 +6,33 @@ This project focuses on making advanced configurations repeatable, safe, and eas
 
 ## Features
 
-- System backup and restore patterns
-- Tor and Direct network mode switching with safety checks
-- QoS helpers for unstable or constrained links
-- System health checks and log collection
-- Opinionated defaults for Arch and similar environments
+- System backup and restore patterns driven by simple profile files
+- Tor and Direct network mode switching with safety checks (design only; user-reviewed)
+- QoS helpers for unstable or constrained links (design placeholders)
+- System health checks and log collection helpers
+- Opinionated defaults for Arch and similar environments, documented before use
 
 ## Repository Layout
 
-- bin/          Executable scripts
+- bin/          Executable entrypoint scripts
 - profiles/     Example configuration profiles
-- docs/         Usage guides and notes
+- docs/         Usage guides and design notes
 - tests/        Basic scripted checks
 
 ## Quick Start
 
-Clone the repository:
+Clone:
 
-    git clone https://github.com/EmergencyRx/smileos-tools.git
+    git clone git@github.com:EmergencyRx/smileos-tools.git
     cd smileos-tools
 
-Review the scripts in bin/ and adapt the profiles to match your environment before using in production.
+Review docs and example profiles before enabling on any production system.
 
 ## Status and Roadmap
 
-- Initial layout and placeholders created
+- Baseline structure and scripts provided
 - Next steps:
-  - Migrate existing working scripts into this structure
-  - Add an install wrapper and unified entry point
-  - Expand documentation for each tool
-  - Add simple automated tests
+  - Refine backup implementation using rsync or snapshots
+  - Implement safe Tor/Direct switching with full logging and rollback
+  - Add QoS helper examples
+  - Extend health checks and tests

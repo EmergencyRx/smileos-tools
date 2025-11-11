@@ -9,4 +9,7 @@ if [[ "$MODE" != "tor" && "$MODE" != "direct" ]]; then
 fi
 
 echo "[smileos-netmode] Requested mode: $MODE"
-echo "Implement firewall, proxy, and DNS changes here with safety checks and logging."
+echo "This is a design stub. Implement firewall/proxy/DNS changes here with:"
+echo "- Full logging of changes"
+echo "- Validation before apply"
+echo "- Rollback on failure"

@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "[smileos-backup] Placeholder."
-echo "Define backup sources, destinations, and strategy in profiles/*.conf and implement logic here."
+PROFILE="${1:-profiles/workstation.example.conf}"
+
+if [ ! -f "$PROFILE" ]; then
+  echo "[smileos-backup] Profile not found: $PROFILE" >&2
+  echo "Create a profile file describing source paths and destination before running real backups." >&2
+  exit 1
+fi
+
+echo "[smileos-backup] This is a template."
+echo "Read and adapt this script with rsync or snapshot commands appropriate for your system."
+echo "Profile loaded from: $PROFILE"

@@ -9,5 +9,14 @@ if [ ! -f "$PROFILE" ]; then
   exit 1
 fi
 
+# Example profile format (ini-style):
+# SRC=/home/username
+# DEST=/mnt/backup/home-username
+# EXCLUDES="--exclude .cache --exclude Downloads"
+
+# shellcheck disable=SC1090
+# Load profile:
+# . "$PROFILE"
+
 echo "[smileos-backup] Template implementation."
 echo "Review and replace this placeholder with rsync/btrfs/zfs commands appropriate to your environment."

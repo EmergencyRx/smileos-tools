@@ -9,7 +9,7 @@ case "$MODE" in
     echo "Design placeholder:"
     echo "- Configure transparent proxy or SOCKS for selected users/apps."
     echo "- Adjust DNS to use Tor-safe resolvers."
-    echo "- Log all changes."
+    echo "- Log all changes to a file under /var/log or ~/.local/share."
     ;;
   direct)
     echo "[smileos-netmode] Requested mode: direct"
